@@ -1,4 +1,4 @@
 ﻿function greet(name) {
-  console.log('Hello, ' + name)
-  return name
+  console.log('Hi there, ' + name + '!')
+  return name.toUpperCase()
 }
