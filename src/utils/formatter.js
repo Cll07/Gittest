@@ -2,12 +2,15 @@
  * 格式化工具函数集合
  */
 
-export function formatDate(date, locale = 'zh-CN') {
-  return new Intl.DateTimeFormat(locale, {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).format(date);
+// feature/refactor-formatter 分支：使用 dayjs 风格的简洁 API
+export function formatDate(date, format = 'YYYY-MM-DD') {
+  const d = new Date(date);
+  const map = {
+    YYYY: d.getFullYear(),
+    MM: String(d.getMonth() + 1).padStart(2, '0'),
+    DD: String(d.getDate()).padStart(2, '0'),
+  };
+  return format.replace(/YYYY|MM|DD/g, (token) => map[token]);
 }
 
 export function formatFileSize(bytes) {
