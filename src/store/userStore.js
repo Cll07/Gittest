@@ -35,6 +35,11 @@ export const useUserStore = defineStore('user', {
     logout() {
       this.profile = null;
       this.settings = {};
+      this.error = null;
+    },
+
+    clearError() {
+      this.error = null;
     },
   },
 });
