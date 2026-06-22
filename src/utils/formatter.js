@@ -2,12 +2,14 @@
  * 格式化工具函数集合
  */
 
-export function formatDate(date, locale = 'zh-CN') {
+// master 分支：支持多时区的增强版本
+export function formatDate(date, locale = 'zh-CN', timeZone = 'Asia/Shanghai') {
   return new Intl.DateTimeFormat(locale, {
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
-  }).format(date);
+    timeZone,
+  }).format(new Date(date));
 }
 
 export function formatFileSize(bytes) {
