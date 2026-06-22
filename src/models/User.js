@@ -12,13 +12,14 @@ export class User {
   validate() {
     if (!isNonEmpty(this.name)) throw new Error('名称不能为空');
     if (!isEmail(this.email)) throw new Error('邮箱格式不正确');
-    if (!['admin', 'editor', 'viewer', 'guest'].includes(this.role)) {
+    if (!['admin', 'editor', 'viewer', 'guest', 'superadmin'].includes(this.role)) {
       throw new Error(`未知角色: ${this.role}`);
     }
   }
 
   hasPermission(action) {
     const permissions = {
+      superadmin: ['read', 'write', 'delete', 'manage', 'audit'],
       admin: ['read', 'write', 'delete', 'manage'],
       editor: ['read', 'write'],
       viewer: ['read'],
